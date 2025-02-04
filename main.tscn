@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5lkcyf2sivnp"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_m1od3"]
+[ext_resource type="Script" path="res://addons/godOSC/scripts/OSCClient.gd" id="2_ndymr"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fw66h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hnehj"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.698
+noise = SubResource("FastNoiseLite_fw66h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7sdd"]
+transparency = 1
+blend_mode = 1
+cull_mode = 1
+depth_draw_mode = 1
+shading_mode = 0
+specular_mode = 1
+albedo_color = Color(0.392157, 0.172549, 0.74902, 1)
+albedo_texture = SubResource("NoiseTexture2D_hnehj")
+
+[sub_resource type="SphereMesh" id="SphereMesh_pa23v"]
+material = SubResource("StandardMaterial3D_g7sdd")
+radius = 2.0
+height = 4.0
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_m1od3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_pa23v")
+skeleton = NodePath("../Camera")
+
+[node name="Camera" type="Camera3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 10.49
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="UI"]
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 335.0
+offset_bottom = 147.0
+
+[node name="DeltaLabel" type="Label" parent="UI/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 54.0
+offset_bottom = 31.0
+
+[node name="OSCClient" type="Node" parent="."]
+script = ExtResource("2_ndymr")

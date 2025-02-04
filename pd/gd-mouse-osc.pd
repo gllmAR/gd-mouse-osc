@@ -1,0 +1,16 @@
+#N canvas 827 239 734 565 12;
+#X obj 97 54 netreceive -u -b 4646;
+#X obj 97 80 oscparse;
+#X obj 97 106 list trim;
+#X obj 97 132 route mouse;
+#X obj 97 158 unpack;
+#X floatatom 97 193 5 0 0 0 - - - 12;
+#X floatatom 144 193 5 0 0 0 - - - 12;
+#X text 73 192 X;
+#X text 191 192 Y;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 4 1 6 0;
